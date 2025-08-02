@@ -237,12 +237,12 @@ resource "aws_ecs_task_definition" "app-s3" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn           = aws_iam_role.ecs_task_role.arn  
   container_definitions = jsonencode([{
-    name      = "${local.prefix}-container"
+    name      = "${local.prefix}-container-s3"
     image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.id}.amazonaws.com/${local.prefix}-ecr-s3:latest"
     essential = true
     environment = [
       {
-        name  = "S3_BUCKET_NAME"
+        name  = "BUCKET_NAME"
         value = aws_s3_bucket.app_bucket.bucket
       },
       {
@@ -276,12 +276,12 @@ resource "aws_ecs_task_definition" "app-sqs" {
   task_role_arn           = aws_iam_role.ecs_task_role.arn
 
   container_definitions = jsonencode([{
-    name      = "${local.prefix}-container"
+    name      = "${local.prefix}-container-sqs"
     image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.id}.amazonaws.com/${local.prefix}-ecr-sqs:latest"
     essential = true
     environment = [
       {
-        name  = "SQS_QUEUE_URL"
+        name  = "QUEUE_URL"
         value = aws_sqs_queue.message_input_queue.url
       },
       {
