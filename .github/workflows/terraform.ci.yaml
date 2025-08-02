@@ -32,10 +32,10 @@ jobs:
       run: terraform apply -auto-approve
       
     - name: Set S3_ECR_REPOSITORY
-      run: echo "S3_ECR_REPOSITORY=ramya-coaching18-infra-ecr-s3" >> $GITHUB_ENV
+      run: echo "ramya-coaching18-infra-ecr-s3" >> $GITHUB_ENV
       
     - name: Set SQS_ECR_REPOSITORY
-      run: echo "=ramya-coaching18-infra-ecr-sqs" >> $GITHUB_ENV
+      run: echo "ramya-coaching18-infra-ecr-sqs" >> $GITHUB_ENV
       
     - name: Set S3_CONTAINER_NAME
       run: echo "ramya-coaching18-infra-container-s3" >> $GITHUB_ENV
