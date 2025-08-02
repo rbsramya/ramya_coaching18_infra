@@ -31,21 +31,37 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve
       
-    - name: Set ECR Repository Name
-      run: echo "ECR_REPOSITORY=ramya-flask-app-ecr" >> $GITHUB_ENV
+    - name: Set S3_ECR_REPOSITORY
+      run: echo "S3_ECR_REPOSITORY=ramya-coaching18-infra-ecr-s3" >> $GITHUB_ENV
       
-    - name: Set Container Name
-      run: echo "CONTAINER_NAME=ramya-flask-app-container" >> $GITHUB_ENV
+    - name: Set SQS_ECR_REPOSITORY
+      run: echo "=ramya-coaching18-infra-ecr-sqs" >> $GITHUB_ENV
       
-    - name: Set Task Definition Family
-      run: echo "TASK_DEF=ramya-flask-app-task" >> $GITHUB_ENV
+    - name: Set S3_CONTAINER_NAME
+      run: echo "ramya-coaching18-infra-container-s3" >> $GITHUB_ENV
       
-    - name: Set ECS Service Name
-      run: echo "ECS_SERVICE=ramya-flask-app-service" >> $GITHUB_ENV
+    - name: Set SQS_CONTAINER_NAME
+      run: echo "ramya-coaching18-infra-container-sqs" >> $GITHUB_ENV
       
-    - name: Set ECS Cluster Name
-      run: echo "ECS_CLUSTER=ramya-flask-app-ecs" >> $GITHUB_ENV
+    - name: Set S3_ECS_SERVICE
+      run: echo "ramya-coaching18-infra-service-s3" >> $GITHUB_ENV
+      
+    - name: Set SQS_ECS_SERVICE
+      run: echo "ramya-coaching18-infra-service-sqs" >> $GITHUB_ENV
 
+    - name: Set S3_TASK_DEF
+      run: echo "ramya-coaching18-infra-task-s3" >> $GITHUB_ENV
+     
+    - name: SQS_TASK_DEF
+      run: echo "ramya-coaching18-infra-task-sqs" >> $GITHUB_ENV
+      
+    - name: Set ECS_CLUSTER
+      run: echo "ramya-coaching18-infra-ecs" >> $GITHUB_ENV
+
+    - name: Set AWS_REGION
+      run: echo "ap-southeast-1" >> $GITHUB_ENV
+
+  
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
