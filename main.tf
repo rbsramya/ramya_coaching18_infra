@@ -7,7 +7,7 @@ terraform {
 }
 
 locals {
-  prefix = "ramya-coaching18-infra"
+  prefix = "dev-ramya-coaching18-infra"
 }
 
 data "aws_caller_identity" "current" {}

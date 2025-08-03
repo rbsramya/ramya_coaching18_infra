@@ -1,6 +1,8 @@
 name: Terraform CI
 
-on: [push]
+on: [pull_request]
+env:
+    dev
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -32,31 +34,31 @@ jobs:
       run: terraform apply -auto-approve
       
     - name: Set S3_ECR_REPOSITORY
-      run: echo "S3_ECR_REPOSITORY=ramya-coaching18-infra-ecr-s3" >> $GITHUB_ENV
+      run: echo "S3_ECR_REPOSITORY=dev-ramya-coaching18-infra-ecr-s3" >> $GITHUB_ENV
   
     - name: Set SQS_ECR_REPOSITORY
-      run: echo "SQS_ECR_REPOSITORY=ramya-coaching18-infra-ecr-sqs" >> $GITHUB_ENV
+      run: echo "SQS_ECR_REPOSITORY=dev-ramya-coaching18-infra-ecr-sqs" >> $GITHUB_ENV
   
     - name: Set S3_CONTAINER_NAME
-      run: echo "S3_CONTAINER_NAME=ramya-coaching18-infra-container-s3" >> $GITHUB_ENV
+      run: echo "S3_CONTAINER_NAME=dev-ramya-coaching18-infra-container-s3" >> $GITHUB_ENV
   
     - name: Set SQS_CONTAINER_NAME
-      run: echo "SQS_CONTAINER_NAME=ramya-coaching18-infra-container-sqs" >> $GITHUB_ENV
+      run: echo "SQS_CONTAINER_NAME=dev-ramya-coaching18-infra-container-sqs" >> $GITHUB_ENV
   
     - name: Set S3_ECS_SERVICE
-      run: echo "S3_ECS_SERVICE=ramya-coaching18-infra-service-s3" >> $GITHUB_ENV
+      run: echo "S3_ECS_SERVICE=dev-ramya-coaching18-infra-service-s3" >> $GITHUB_ENV
   
     - name: Set SQS_ECS_SERVICE
-      run: echo "SQS_ECS_SERVICE=ramya-coaching18-infra-service-sqs" >> $GITHUB_ENV
+      run: echo "SQS_ECS_SERVICE=dev-ramya-coaching18-infra-service-sqs" >> $GITHUB_ENV
 
     - name: Set S3_TASK_DEF
-      run: echo "S3_TASK_DEF=ramya-coaching18-infra-task-s3" >> $GITHUB_ENV
+      run: echo "S3_TASK_DEF=dev-ramya-coaching18-infra-task-s3" >> $GITHUB_ENV
  
     - name: Set SQS_TASK_DEF
-      run: echo "SQS_TASK_DEF=ramya-coaching18-infra-task-sqs" >> $GITHUB_ENV
+      run: echo "SQS_TASK_DEF=dev-ramya-coaching18-infra-task-sqs" >> $GITHUB_ENV
   
     - name: Set ECS_CLUSTER
-      run: echo "ECS_CLUSTER=ramya-coaching18-infra-ecs" >> $GITHUB_ENV
+      run: echo "ECS_CLUSTER=dev-ramya-coaching18-infra-ecs" >> $GITHUB_ENV
 
     - name: Set AWS_REGION
       run: echo "AWS_REGION=ap-southeast-1" >> $GITHUB_ENV
